@@ -7,3 +7,4 @@ WORKDIR /code
 ADD ./src/requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD ./src/ /code/
+ADD ./utilities/ /code/utilities/

@@ -102,6 +102,7 @@ ENV/
 
 # Base de datos
 db.sqlite3
+postgres-data/
 
 # Mac Stuff
 .DS_Store
