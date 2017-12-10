@@ -42,3 +42,7 @@ class Asignatura(models.Model):
     def __str__(self, *args, **kwargs):
         # Python 3
         return '{} - {}'.format(self.facultad, self.nombre)
+
+    @property
+    def facultad_selected(self):
+        return self.get_facultad_display()
