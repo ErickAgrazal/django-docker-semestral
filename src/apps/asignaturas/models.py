@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -19,7 +20,7 @@ class Asignatura(models.Model):
         (CIENCIAS_Y_TECNOLOGIA, "Facultad de Ciencias y Tecnología"),
     )
 
-    # profesor = models.ForeignKey(User, null=True, blank=True, default=None)
+    profesor = models.ForeignKey(User, null=True, blank=True, default=None, verbose_name='Profesor')
     nombre = models.CharField(max_length=100, blank=False, null=False, default='', verbose_name='Nombre')
     descripcion = models.TextField(blank=True, null=True, default='', verbose_name='Descripción')
     codigo = models.CharField(max_length=10, blank=True, null=True, verbose_name='Código')
