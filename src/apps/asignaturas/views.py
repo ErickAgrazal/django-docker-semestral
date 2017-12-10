@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import (DetailView, ListView, CreateView,
+                                  UpdateView, DeleteView, TemplateView)
 from django.shortcuts import redirect
 
 from .models import Asignatura
@@ -15,6 +16,12 @@ class AsignaturasListView(ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(AsignaturasListView, self).get_queryset(*args)
         return qs.filter(profesor=self.request.user)
+
+
+class AsignaturasDetailView(DetailView):
+    template_name = "asignaturas_detalle.html"
+    http_method_names = [u'get', ]
+    model = Asignatura
 
 
 class AsignaturasCreateView(CreateView):

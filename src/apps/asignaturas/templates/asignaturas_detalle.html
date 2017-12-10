@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Lista de asignaturas{% endblock %}
+{% block title %}Detalle de asignatura{% endblock %}
 
 {% block content %}
     <div class="row">
+      <div class="col-sm-12">
+        <h1>{{object.nombre}}</h1>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-sm-12" >
-        <h2>Listado de Asignaturas</h2>
+        <h2>Listado de Estudiantes</h2>
         <hr>
         <br>
         <table class="table table-bordered">
@@ -21,7 +26,7 @@
             <tbody>
               {% for object in object_list %}
               <tr>
-                <td><a href="{% url 'asignaturas:detalle' object.pk %}">{{ object.codigo }}</a></td>
+                <td>{{ object.codigo }}</td>
                 <td>{{ object.nombre }}</td>
                 <td>{{ object.facultad_selected }}</td>
                 <td><a href="{% url 'asignaturas:actualizar' object.pk %}">Editar</a></td>

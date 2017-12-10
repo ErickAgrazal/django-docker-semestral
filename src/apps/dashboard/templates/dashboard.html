@@ -3,5 +3,8 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<h1>Hello World</h1>
+<h1>Dashboard</h1>
+<hr>
+<h2>Cantidad de asignaturas del profesor: <a href="{% url 'asignaturas:lista' %}">{{asignaturas}}</a></h2>
+<h2>Cantidad de estudiantes del profesor: {{estudiantes}}</h2>
 {% endblock %}
