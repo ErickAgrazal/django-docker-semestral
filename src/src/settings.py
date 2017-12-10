@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # APPS PROPIAS
     'apps.asignaturas',
     'apps.dashboard',
+    'apps.estudiantes',
 ]
 
 MIDDLEWARE = [

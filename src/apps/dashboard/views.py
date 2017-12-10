@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.views.generic import TemplateView
 
 from ..asignaturas.models import Asignatura
+from ..estudiantes.models import Estudiante
 
 
 class DashboardView(TemplateView):
@@ -25,6 +26,5 @@ class DashboardView(TemplateView):
         return Asignatura.objects.filter(profesor=self.request.user).count()
 
     def get_estudiantes(self, *args, **kwargs):
-        # TODO
-        # - Missing the queryset, as the model doesn't exist yet.
-        return '120'
+        asignaturas = Asignatura.objects.filter(profesor=self.request.user)
+        return Estudiante.objects.filter(asignatura__in=asignaturas).count()

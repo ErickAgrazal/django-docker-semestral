@@ -5,6 +5,8 @@ from django.views.generic import (DetailView, ListView, CreateView,
                                   UpdateView, DeleteView, TemplateView)
 from django.shortcuts import redirect
 
+from ..estudiantes.models import Estudiante
+
 from .models import Asignatura
 from .forms import AsignaturasModelForm
 
@@ -22,6 +24,11 @@ class AsignaturasDetailView(DetailView):
     template_name = "asignaturas_detalle.html"
     http_method_names = [u'get', ]
     model = Asignatura
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(AsignaturasDetailView, self).get_context_data(*args, **kwargs)
+        ctx['estudiantes'] = Estudiante.objects.filter(asignatura=self.object)
+        return ctx
 
 
 class AsignaturasCreateView(CreateView):
