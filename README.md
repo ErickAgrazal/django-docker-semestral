@@ -72,3 +72,8 @@ python manage.py shell
 # Salir del contenedor
 exit
 ```
+
+## Detener todos los procesos de docker
+```
+docker stop $(docker ps -a -q)
+```

@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 from apps.dashboard.views import DashboardView
 
 
 urlpatterns = [
-    url(r'^$', DashboardView.as_view()),
+    url(r'^$', login_required(DashboardView.as_view()), name='dashboard'),
 
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^admin/', admin.site.urls),
 ]
