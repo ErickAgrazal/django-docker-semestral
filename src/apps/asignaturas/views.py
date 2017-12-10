@@ -28,3 +28,31 @@ class AsignaturasCreateView(CreateView):
         asignatura.profesor = self.request.user
         asignatura.save()
         return redirect(self.success_url)
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(AsignaturasCreateView, self).get_queryset(*args)
+        return qs.filter(profesor=self.request.user)
+
+
+class AsignaturasUpdateView(UpdateView):
+    template_name = "asignaturas_crear.html"  # Mismo que el de crear
+    http_method_names = [u'get', u'post', ]
+    success_url = '/asignaturas'
+    model = Asignatura
+    form_class = AsignaturasModelForm
+
+    def form_valid(self, form):
+        asignatura = form.save(commit=False)
+        asignatura.profesor = self.request.user
+        asignatura.save()
+        return redirect(self.success_url)
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(AsignaturasUpdateView, self).get_queryset(*args)
+        return qs.filter(profesor=self.request.user)
+
+
+class AsignaturasDeleteView(DeleteView):
+    template_name = "asignaturas_delete.html"
+    model = Asignatura
+    success_url = '/asignaturas'
